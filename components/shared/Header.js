@@ -2,6 +2,7 @@
 import React from "react"
 
 import WALink from '@/components/shared/WALink'
+import auth0 from '@/services/auth0'
 
 class Header extends React.Component{
 
@@ -13,8 +14,8 @@ class Header extends React.Component{
           <WALink href="/about" title='Abount' />
           <WALink href="/portfolios" title='Portfolios' />
           <WALink href="/cv" title='CV' />
-          <WALink href="/logout" title='Logout' className='float-right' />
-          <WALink href="/login" title='Login' className='float-right' />
+          <WALink href="" title='Logout' className='float-right' onClick={auth0.logout} />
+          <WALink href="" title='Login' className='float-right' onClick={auth0.login} />
         </nav>
         <style jsx>
           {`
