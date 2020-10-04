@@ -1,17 +1,17 @@
 
+
 import BaseLayout from "@/components/layouts/BaseLayout"
 import BasePage from '@/components/layouts/BasePage'
 
 
-const Index = () => {
-
+const Cv = () =>{
     return (
       <BaseLayout>
         <BasePage>
-          <h1>Im in the index page</h1>
+          <h1>Im in the CV page</h1>
         </BasePage>
       </BaseLayout>
     )
 }
 
-export default Index; 
+export default Cv; 
