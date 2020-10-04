@@ -1,27 +1,22 @@
-import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 
-
-export const useGetData = (url) => {
-
-  const [data, setData] = useState()
-  const [error, setError] = useState()
-  const [loadding, setLoadding] = useState(true)
-
-  useEffect( () => {
-    async function fetchData(){
-      const res = await fetch(url);
-      const result = await res.json();
-
-      if (res.status !== 200){
-        setError(result)
-      } else {
-        setData(result)
-      }
-
-      setLoadding(false)
+const fetcher = (url) => 
+  fetch(url).then(async res=> {
+    const result = await res.json()
+    if (res.status !== 200){
+      return Promise. reject(result)
+    } else {
+      return result;
     }
+  })
 
-    url && fetchData();
-  }, [])
-  return {data, error, loadding}
+
+  export const useGetPosts = () => {
+  const {data, error, ...rest} = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher )
+  return {data , error, loadding: !data && !error, ...rest}
+}
+
+export const useGetPostsByID = (id) => {
+  const {data, error, ...rest} = useSWR(id ? `https://jsonplaceholder.typicode.com/posts/${id}`: null, fetcher )
+  return {data , error, loadding: !data && !error, ...rest}
 }

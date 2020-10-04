@@ -1,12 +1,13 @@
 import BaseLayout from '@/components/layouts/BaseLayout'
 import BasePage from '@/components/layouts/BasePage'
 import Link from 'next/link'
-import { useGetData } from '@/actions'
+import { useGetPosts } from '@/actions'
+
 
 
 const Portfolios = () => {
 
-  const {data, error, loadding} = useGetData('/api/v1/posts')
+  const {data, error, loadding} = useGetPosts('/api/v1/posts' )
 
   const rendetPosts = (posts) => {
     return posts.map( post =>       
